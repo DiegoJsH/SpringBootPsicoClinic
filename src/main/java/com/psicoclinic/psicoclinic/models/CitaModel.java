@@ -46,7 +46,7 @@ public class CitaModel {
     private String notas;
     
     @Column(name = "estado", length = 20)
-    private String estado; // Ej: "Pendiente", "Confirmada", "Completada", "Cancelada"
+    private String estado; 
     
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
