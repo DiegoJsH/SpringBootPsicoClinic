@@ -1,9 +1,12 @@
 package com.psicoclinic.psicoclinic.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.psicoclinic.psicoclinic.models.PacienteModel;
 import com.psicoclinic.psicoclinic.services.PacienteService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
@@ -45,13 +49,17 @@ public class PacienteController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public String eliminarPorId(@PathVariable("id") Long id) {
+    public Map<String, Object> eliminarPorId(@PathVariable("id") Long id) {
+        Map<String, Object> response = new HashMap<>();
         boolean ok = this.pacienteService.eliminarPaciente(id);
         if (ok) {
-            return "Se eliminó el paciente con id " + id;
+            response.put("success", true);
+            response.put("message", "Paciente eliminado con éxito");
         } else {
-            return "No se pudo eliminar el paciente con id " + id;
+            response.put("success", false);
+            response.put("message", "No se pudo eliminar el paciente con id " + id);
         }
+        return response;
     }
 
     @PutMapping(path = "/{id}")
