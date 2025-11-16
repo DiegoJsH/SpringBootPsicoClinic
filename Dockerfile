@@ -1,5 +1,5 @@
-# Usar Java 21 como base
-FROM openjdk:21-jdk-slim
+# Usar Java 21 como base (Eclipse Temurin - Adoptium)
+FROM eclipse-temurin:21-jdk-alpine
 
 # Crear directorio de trabajo
 WORKDIR /app
