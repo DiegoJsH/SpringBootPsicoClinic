@@ -1,9 +1,10 @@
 package com.psicoclinic.psicoclinic.security.payloads;
 
 public class JwtResponse {
-    private String token;
-    private String username;
-    private String role;
+
+    private final String token;
+    private final String username;
+    private final String role;
 
     public JwtResponse(String token, String username, String role) {
         this.token = token;
@@ -11,7 +12,15 @@ public class JwtResponse {
         this.role = role;
     }
 
-    public String getToken() { return token; }
-    public String getUsername() { return username; }
-    public String getRole() { return role; }
+    public String getToken() {
+        return token;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getRole() {
+        return role;
+    }
 }

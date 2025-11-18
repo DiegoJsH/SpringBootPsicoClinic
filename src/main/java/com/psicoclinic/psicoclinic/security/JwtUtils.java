@@ -14,7 +14,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtils {
 
     // Clave secreta para firmar el token. ¡DEBE SER MÁS LARGA EN PRODUCCIÓN!
-    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512); 
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     @Value("${jwt.expiration.ms:3600000}") // 1 hora por defecto
     private int jwtExpirationMs;
@@ -35,7 +35,7 @@ public class JwtUtils {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(authToken);
             return true;
-        } catch (Exception e) {
+        } catch (io.jsonwebtoken.JwtException | IllegalArgumentException e) {
             System.err.println("JWT Error: " + e.getMessage());
         }
         return false;
